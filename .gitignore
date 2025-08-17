@@ -8,6 +8,6 @@
 
 # Cloudflare
 .mf
-.wrangler.jsonc
+wrangler.jsonc
 .dev.vars*
 
