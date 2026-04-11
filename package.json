@@ -13,12 +13,16 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@resvg/resvg-js": "^2.6.2",
+    "@tailwindcss/typography": "^0.5.19",
     "boring-avatars": "^2.0.1",
     "daisyui": "^5.0.50",
+    "html-react-parser": "^5.2.10",
     "isbot": "^5.1.27",
+    "ky": "^2.0.0",
     "microcms-js-sdk": "^3.2.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-router": "^7.7.1",
     "up-fetch": "^2.5.0"
   },
