@@ -10,14 +10,19 @@ export default function BlogList({ posts }: Props) {
       <div className="grid grid-cols-1 gap-x-7 gap-y-12 sm:grid-cols-2  lg:grid-cols-3">
         {posts.map((post) => (
           <Link to={`/blog/${post.id}`} key={post.id}>
-            <article className="grid grid-cols-1">
+            <article className="grid grid-cols-1 ">
               {post.eyecatch?.url ? (
                 <img
                   src={post.eyecatch.url}
                   alt={`${post.title}のサムネイル画像`}
+                  className="max-h-[200px] w-full object-cover"
                 />
               ) : (
-                <img src="/noimage.png" alt="noImage" />
+                <img
+                  src="/noimage.png"
+                  alt="noImage"
+                  className="max-h-[200px] w-full object-cover"
+                />
               )}
               <h3 className="text-lg font-semibold mt-6">
                 {post.title}

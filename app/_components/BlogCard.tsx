@@ -11,7 +11,7 @@ export default function BlogCard({ post }: Props) {
         <img
           src={post.eyecatch?.url}
           alt={post.eyecatch ? `${post.title}の画像` : ""}
-          className="transition-transform duration-300 ease-in-out group-hover:scale-110"
+          className="max-h-[200px] w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
       </figure>
       <div className="card-body">

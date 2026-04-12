@@ -8,7 +8,7 @@ import type { Post } from "~/_types/Post";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "kyo-minok" },
+    { title: "興味の1歩目" },
     {
       name: "description",
       content:
@@ -19,9 +19,11 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({ context }: Route.LoaderArgs) {
   const client = createClient(context.cloudflare.env);
-  const { contents } = await client.get("posts", {
-    searchParams: { limit: 5 },
-  }).json<{ contents: Post[] }>();
+  const { contents } = await client
+    .get("posts", {
+      searchParams: { limit: 5 },
+    })
+    .json<{ contents: Post[] }>();
 
   return { posts: contents };
 }
