@@ -3,17 +3,27 @@ import BlogList from "~/_components/BlogList";
 import type { Post } from "~/_types/Post";
 import { createClient } from "~/lib/microcms";
 
+export function meta() {
+  return [{ title: "カテゴリー一覧 | 興味の1歩目" }];
+}
+
 type Props = {
   params: { id: string };
 };
 
-export async function loader({ params, context }: Props & { context: any }) {
+export async function loader({
+  params,
+  context,
+}: Props & { context: any }) {
   const client = createClient(context.cloudflare.env);
-  const { contents } = await client.get("posts", {
-    searchParams: {
-      filters: `category[contains]${params.id}`,
-    },
-  }).json<{ contents: Post[] }>();
+  const { contents } = await client
+    .get("posts", {
+      searchParams: {
+        filters: `category[contains]${params.id}`,
+        orders: "-publishedAt",
+      },
+    })
+    .json<{ contents: Post[] }>();
 
   return { posts: contents };
 }

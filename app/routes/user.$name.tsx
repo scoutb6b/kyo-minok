@@ -2,16 +2,26 @@ import { useLoaderData } from "react-router";
 import BlogList from "~/_components/BlogList";
 import type { Post } from "~/_types/Post";
 import { createClient } from "~/lib/microcms";
+
+export function meta({ params }: { params: { name: string } }) {
+  return [{ title: `${params.name}の記事一覧 | 興味の1歩目` }];
+}
 type Props = {
   params: { name: string };
 };
-export async function loader({ params, context }: Props & { context: any }) {
+export async function loader({
+  params,
+  context,
+}: Props & { context: any }) {
   const client = createClient(context.cloudflare.env);
-  const { contents } = await client.get("posts", {
-    searchParams: {
-      filters: `who[contains]${params.name}`,
-    },
-  }).json<{ contents: Post[] }>();
+  const { contents } = await client
+    .get("posts", {
+      searchParams: {
+        filters: `who[contains]${params.name}`,
+        orders: "-publishedAt",
+      },
+    })
+    .json<{ contents: Post[] }>();
 
   return { posts: contents };
 }

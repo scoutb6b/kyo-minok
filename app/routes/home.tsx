@@ -21,7 +21,7 @@ export async function loader({ context }: Route.LoaderArgs) {
   const client = createClient(context.cloudflare.env);
   const { contents } = await client
     .get("posts", {
-      searchParams: { limit: 5 },
+      searchParams: { limit: 5, orders: "-publishedAt" },
     })
     .json<{ contents: Post[] }>();
 

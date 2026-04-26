@@ -4,6 +4,11 @@ import Avatar from "boring-avatars";
 import type { Post } from "~/_types/Post";
 import { ArrowArcLeftIcon } from "@phosphor-icons/react";
 
+export function meta({ data }: { data: { post: Post } | undefined }) {
+  const title = data?.post?.title ?? "記事";
+  return [{ title: `${title} | 興味の1歩目` }];
+}
+
 type Props = {
   params: { id: string };
 };

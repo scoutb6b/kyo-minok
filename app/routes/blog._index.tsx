@@ -4,9 +4,17 @@ import type { Post } from "~/_types/Post";
 import { createClient } from "~/lib/microcms";
 import type { Route } from "./+types/blog._index";
 
+export function meta() {
+  return [{ title: "ブログ一覧 | 興味の1歩目" }];
+}
+
 export async function loader({ context }: Route.LoaderArgs) {
   const client = createClient(context.cloudflare.env);
-  const { contents } = await client.get("posts").json<{ contents: Post }>();
+  const { contents } = await client
+    .get("posts", {
+      searchParams: { orders: "-publishedAt" },
+    })
+    .json<{ contents: Post }>();
 
   return { posts: contents };
 }
